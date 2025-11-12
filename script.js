@@ -341,4 +341,5 @@ window.addEventListener('scroll', () => {
     } else {
         scrollToTopBtn.classList.add('d-none');
     }
+    
 });
