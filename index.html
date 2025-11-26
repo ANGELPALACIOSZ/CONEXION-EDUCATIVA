@@ -5,61 +5,236 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conexión Educativa - Plataforma de Mentoría Académica</title>
     
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== VARIABLES CSS ===== */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #0ea5e9;
+            --accent-color: #8b5cf6;
+            --success-color: #10b981;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+        }
+
+        /* ===== ESTILOS GENERALES ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== LOGIN OVERLAY ===== */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn-google {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 5px;
+            font-weight: 600;
+            width: 100%;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-google:hover {
+            background: #357ae8;
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: var(--bg-light);
+        }
+
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        .d-none { display: none !important; }
+
+        /* ===== MAIN CONTENT ===== */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn-demo {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .mentor-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .mentor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.4);
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .alert-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 99999;
+            min-width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- 1️⃣ LOGIN OVERLAY -->
+    <!-- ===== LOGIN SCREEN ===== -->
     <div id="loginOverlay" class="login-overlay">
-        <div class="login-container">
-            <div class="login-box">
-                <div class="login-header">
-                    <i class="fas fa-graduation-cap mb-3" style="font-size: 3rem;"></i>
-                    <h2>Conexión Educativa</h2>
-                    <p>Inicia sesión para acceder a la plataforma</p>
-                </div>
-                
-                <button class="btn btn-google w-100 mb-3" onclick="handleGoogleLogin()">
-                    <i class="fab fa-google me-2"></i>Continuar con Google
-                </button>
-                
-                <div class="divider">o</div>
-                
-                <form id="loginForm" onsubmit="handleEmailLogin(event)">
-                    <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Correo electrónico" required>
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="form-control" placeholder="Contraseña" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary-custom w-100 mb-3">
-                        Iniciar Sesión
-                    </button>
-                </form>
-                
-                <p class="text-center text-muted">
-                    ¿Eres mentor? <a href="#" onclick="alert('Registro de mentores en desarrollo')">Regístrate aquí</a>
-                </p>
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--primary-color);"></i>
+                <h2>Conexión Educativa</h2>
+                <p>Inicia sesión para acceder</p>
             </div>
+
+            <!-- Botón Google -->
+            <button class="btn-google" onclick="handleGoogleLogin()">
+                <i class="fab fa-google me-2"></i>Continuar con Google
+            </button>
+
+            <!-- Botón DEBUG: Acceso directo -->
+            <button class="btn-primary-custom w-100 mb-3" onclick="handleGuestLogin()" style="background: var(--success-color);">
+                <i class="fas fa-user-circle me-2"></i>Entrar como Invitado (TEST)
+            </button>
+
+            <div class="divider">o</div>
+
+            <!-- Formulario Email -->
+            <form onsubmit="handleEmailLogin(event)">
+                <input type="email" class="form-control mb-2" placeholder="tu@email.com" required>
+                <input type="password" class="form-control mb-3" placeholder="Contraseña" required>
+                <button type="submit" class="btn-primary-custom w-100">
+                    Iniciar Sesión
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- 2️⃣ MAIN CONTENT -->
+    <!-- ===== MAIN APP ===== -->
     <div id="mainContent" class="d-none">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#home">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">
                     <i class="fas fa-graduation-cap me-2"></i>Conexión Educativa
-                </a>
-                <div class="navbar-text me-3">
-                    <span class="badge bg-success" id="userBadge"></span>
-                </div>
+                </span>
+                <span class="badge bg-success me-3" id="userBadge"></span>
                 <button class="btn btn-sm btn-outline-danger" onclick="logout()">
                     <i class="fas fa-sign-out-alt me-1"></i>Cerrar sesión
                 </button>
@@ -67,18 +242,14 @@
         </nav>
 
         <section id="home" class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Plataforma de Mentoría Académica</h1>
-                    <p class="hero-subtitle">"Conexión Educativa" facilita la mentoría entre estudiantes de ciclos iniciales y avanzados</p>
-                    <button class="btn btn-light btn-lg mt-4" onclick="showDemo()">
-                        <i class="fas fa-play me-2"></i>Ver Demo
-                    </button>
-                </div>
-            </div>
+            <h1 class="hero-title">Plataforma de Mentoría Académica</h1>
+            <p class="hero-subtitle">"Conexión Educativa" facilita la mentoría entre estudiantes de cikl</p>
+            <button class="btn-demo" onclick="showDemo()">
+                <i class="fas fa-play me-2"></i>Ver Demo
+            </button>
         </section>
 
-        <section id="mentors" class="py-5 my-5">
+        <section id="mentors" style="padding: 2rem;">
             <div class="container">
                 <h2 class="section-title">Busca tu Mentor</h2>
                 <div class="row mb-4">
@@ -95,12 +266,12 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-primary-custom w-100" onclick="filterMentors()">
+                        <button class="btn-primary-custom w-100" onclick="filterMentors()">
                             <i class="fas fa-filter me-2"></i>Filtrar
                         </button>
                     </div>
                 </div>
-                <div id="mentorsGrid" class="row g-4"></div>
+                <div id="mentorsGrid" class="row"></div>
             </div>
         </section>
     </div>
@@ -108,7 +279,197 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+    <!-- TODAS LAS FUNCIONES JAVASCRIPT -->
+    <script>
+        // Datos de mentores
+        const mentorsData = [
+            { id: 1, name: "María García", specialty: "matematicas", specialties: ["Cálculo", "Álgebra"], rating: 4.8, experience: "3 años" },
+            { id: 2, name: "Carlos Ruiz", specialty: "programacion", specialties: ["JavaScript", "Node.js"], rating: 4.9, experience: "4 años" },
+            { id: 3, name: "Ana López", specialty: "ciencias", specialties: ["Física", "Química"], rating: 4.7, experience: "2 años" },
+            { id: 4, name: "David Martínez", specialty: "idiomas", specialties: ["Inglés", "Francés"], rating: 4.6, experience: "5 años" }
+        ];
+
+        // Estado global
+        let currentUser = localStorage.getItem('loggedUser') || null;
+
+        // INICIALIZACIÓN
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("🚀 APP INICIADA");
+            if (currentUser) {
+                console.log("✅ Usuario encontrado:", currentUser);
+                showMainContent();
+            } else {
+                console.log("❌ Sin usuario, mostrando login");
+                showLogin();
+            }
+        });
+
+        // ===== FUNCIONES LOGIN =====
+        function showLogin() {
+            console.log("🔐 Mostrando pantalla de login");
+            document.getElementById('loginOverlay').classList.remove('d-none');
+            document.getElementById('mainContent').classList.add('d-none');
+        }
+
+        function showMainContent() {
+            console.log("📱 Mostrando contenido principal");
+            document.getElementById('loginOverlay').classList.add('d-none');
+            document.getElementById('mainContent').classList.remove('d-none');
+            
+            // Mostrar tipo de usuario
+            const userType = currentUser.split('_')[0];
+            const userName = currentUser.split('_')[1] || 'Usuario';
+            document.getElementById('userBadge').textContent = userType === 'google' ? 'Google User' : userName;
+            
+            loadMentors();
+        }
+
+        function handleGoogleLogin() {
+            console.log("🔵 Iniciando login con Google...");
+            const btn = event.target;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Conectando con Google...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                currentUser = 'google_user_' + Date.now();
+                localStorage.setItem('loggedUser', currentUser);
+                console.log("✅ Login Google exitoso:", currentUser);
+                showMainContent();
+                showNotification('✅ Autenticado con Google', 'success');
+            }, 2000);
+        }
+
+        function handleEmailLogin(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            currentUser = 'email_' + email.split('@')[0];
+            localStorage.setItem('loggedUser', currentUser);
+            console.log("✅ Login email exitoso:", currentUser);
+            showMainContent();
+            showNotification('✅ Inicio de sesión exitoso', 'success');
+        }
+
+        // 👉 ACCESO DIRECTO PARA TESTING
+        function handleGuestLogin() {
+            console.log("🎮 Login como invitado");
+            currentUser = 'guest_test_user';
+            localStorage.setItem('loggedUser', currentUser);
+            showMainContent();
+            showNotification('🎮 Modo invitado activado', 'info');
+        }
+
+        function logout() {
+            console.log("🚪 Cerrando sesión");
+            localStorage.removeItem('loggedUser');
+            currentUser = null;
+            showLogin();
+            showNotification('Has cerrado sesión', 'info');
+        }
+
+        // ===== FUNCIONES BOTONES PRINCIPALES =====
+        function showDemo() {
+            console.log("🎯 Mostrando demo");
+            document.getElementById('mentors').scrollIntoView({ behavior: 'smooth' });
+            showNotification('🎯 Demo activada: Usa los filtros', 'info');
+        }
+
+        function filterMentors() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const areaFilter = document.getElementById('filterArea').value;
+            
+            console.log("🔍 Filtrando:", { searchTerm, areaFilter });
+            
+            const filtered = mentorsData.filter(mentor => {
+                const matchesSearch = mentor.name.toLowerCase().includes(searchTerm) || 
+                                     mentor.specialties.some(s => s.toLowerCase().includes(searchTerm));
+                const matchesArea = !areaFilter || mentor.specialty === areaFilter;
+                return matchesSearch && matchesArea;
+            });
+            
+            console.log("✅ Resultados:", filtered.length);
+            loadMentors(filtered);
+            showNotification(`🔍 ${filtered.length} mentores encontrados`, 'info');
+        }
+
+        function scheduleSession(mentorName) {
+            if (!currentUser) {
+                showNotification('❌ Debes iniciar sesión primero', 'danger');
+                showLogin();
+                return;
+            }
+            
+            console.log("📅 Agendando con:", mentorName);
+            
+            const modalId = 'scheduleModal';
+            const modalHtml = `
+                <div class="modal fade" id="${modalId}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title">Agendar con ${mentorName}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label>Fecha y Hora</label>
+                                    <input type="datetime-local" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary-custom" onclick="confirmSession('${mentorName}')">
+                                    Confirmar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            new bootstrap.Modal(document.getElementById(modalId)).show();
+        }
+
+        function confirmSession(mentorName) {
+            console.log("✅ Confirmando sesión con:", mentorName);
+            bootstrap.Modal.getInstance(document.getElementById('scheduleModal')).hide();
+            showNotification(`✅ Sesión confirmada con ${mentorName}`, 'success');
+        }
+
+        // ===== HELPERS =====
+        function loadMentors(mentors = mentorsData) {
+            const grid = document.getElementById('mentorsGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = mentors.map((mentor, index) => `
+                <div class="col-md-6 col-lg-3" style="animation-delay: ${index * 0.1}s">
+                    <div class="mentor-card">
+                        <h5>${mentor.name}</h5>
+                        <p>⭐ ${mentor.rating} | ${mentor.experience}</p>
+                        <p><small>${mentor.specialties.join(', ')}</small></p>
+                        <button class="btn-primary-custom w-100" onclick="scheduleSession('${mentor.name}')">
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showNotification(message, type = 'info') {
+            const alertId = 'alert-' + Date.now();
+            const alertHtml = `
+                <div id="${alertId}" class="alert alert-${type} alert-dismissible fade show alert-toast" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', alertHtml);
+            
+            setTimeout(() => {
+                const alert = document.getElementById(alertId);
+                if (alert) alert.remove();
+            }, 4000);
+        }
+    </script>
 </body>
 </html>
