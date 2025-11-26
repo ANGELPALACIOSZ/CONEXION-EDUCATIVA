@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conexión Educativa - Plataforma de Mentoría Académica</title>
     
-    <!-- Bootstrap CSS (CDN) -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome (CDN) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- ESTILOS COMPLETOS -->
     <style>
-        /* ===== VARIABLES CSS ===== */
         :root {
             --primary-color: #2563eb;
             --secondary-color: #0ea5e9;
@@ -21,16 +21,22 @@
             --text-dark: #1e293b;
             --text-light: #64748b;
             --bg-light: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
-        /* ===== ESTILOS GENERALES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--bg-light);
-            margin: 0;
-            padding: 0;
         }
 
         /* ===== LOGIN OVERLAY ===== */
@@ -80,6 +86,19 @@
             transform: translateY(-2px);
         }
 
+        .btn-guest {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 5px;
+            font-weight: 600;
+            width: 100%;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
         .divider {
             text-align: center;
             margin: 1.5rem 0;
@@ -102,11 +121,54 @@
 
         .d-none { display: none !important; }
 
-        /* ===== MAIN CONTENT ===== */
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* ===== SECCIONES ===== */
+        .section {
+            padding: 4rem 2rem;
+            min-height: 100vh;
+        }
+
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 80px 20px;
             text-align: center;
         }
 
@@ -117,68 +179,190 @@
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
             max-width: 700px;
             margin: 0 auto;
         }
 
-        .btn-demo {
-            background: white;
-            color: var(--primary-color);
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-demo:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
         .section-title {
             font-size: 2rem;
             text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        /* ===== FUNCIONALIDADES ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* ===== TECNOLOGÍAS ===== */
+        .tech-container {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
             margin: 2rem 0;
         }
 
+        .tech-badge {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        /* ===== FLUJO ===== */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            width: 45%;
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* ===== MENTORES DEMO ===== */
         .mentor-card {
             background: white;
             border-radius: 12px;
             padding: 1.5rem;
-            margin: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
         }
 
         .mentor-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            box-shadow: var(--hover-shadow);
         }
 
-        .btn-primary-custom {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .btn-schedule {
+            width: 100%;
+            margin-top: 1rem;
         }
 
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.4);
+        /* ===== IMPACTO ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .navbar {
+        .stat-card {
             background: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .timeline::before { left: 30px; }
+            .timeline-content { width: calc(100% - 80px); }
+            .timeline-item:nth-child(odd) .timeline-content { margin-left: 80px; }
+            .timeline-number { left: 30px; }
+            .nav-buttons { justify-content: center; }
+        }
+
+        /* ===== ANIMACIONES ===== */
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .alert-toast {
@@ -188,30 +372,26 @@
             z-index: 99999;
             min-width: 300px;
         }
-
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2rem; }
-        }
     </style>
 </head>
 <body>
-    <!-- ===== LOGIN SCREEN ===== -->
+    <!-- ===== 1️⃣ LOGIN OVERLAY ===== -->
     <div id="loginOverlay" class="login-overlay">
         <div class="login-box">
             <div class="login-header">
-                <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--primary-color);"></i>
+                <i class="fas fa-graduation-cap mb-3" style="font-size: 3rem; color: var(--primary-color);"></i>
                 <h2>Conexión Educativa</h2>
-                <p>Inicia sesión para acceder</p>
+                <p>Inicia sesión para acceder a la plataforma</p>
             </div>
 
-            <!-- Botón Google -->
+            <!-- Botón Google (SIMULA OAUTH) -->
             <button class="btn-google" onclick="handleGoogleLogin()">
                 <i class="fab fa-google me-2"></i>Continuar con Google
             </button>
 
-            <!-- Botón DEBUG: Acceso directo -->
-            <button class="btn-primary-custom w-100 mb-3" onclick="handleGuestLogin()" style="background: var(--success-color);">
-                <i class="fas fa-user-circle me-2"></i>Entrar como Invitado (TEST)
+            <!-- Botón Invitado (TESTING) -->
+            <button class="btn-guest" onclick="handleGuestLogin()">
+                <i class="fas fa-user-circle me-2"></i>Entrar como Invitado
             </button>
 
             <div class="divider">o</div>
@@ -227,36 +407,152 @@
         </div>
     </div>
 
-    <!-- ===== MAIN APP ===== -->
+    <!-- ===== 2️⃣ APP PRINCIPAL (oculta hasta login) ===== -->
     <div id="mainContent" class="d-none">
+        
+        <!-- NAVBAR CON BOTONES PARA CADA SECCIÓN -->
         <nav class="navbar">
             <div class="container-fluid">
-                <span class="navbar-brand mb-0 h1">
+                <span class="navbar-brand">
                     <i class="fas fa-graduation-cap me-2"></i>Conexión Educativa
                 </span>
-                <span class="badge bg-success me-3" id="userBadge"></span>
-                <button class="btn btn-sm btn-outline-danger" onclick="logout()">
-                    <i class="fas fa-sign-out-alt me-1"></i>Cerrar sesión
-                </button>
+                <div class="nav-buttons">
+                    <button class="nav-btn active" onclick="scrollToSection('home')">Inicio</button>
+                    <button class="nav-btn" onclick="scrollToSection('features')">Funcionalidades</button>
+                    <button class="nav-btn" onclick="scrollToSection('tech')">Tecnología</button>
+                    <button class="nav-btn" onclick="scrollToSection('flow')">Flujo</button>
+                    <button class="nav-btn" onclick="scrollToSection('mentors')">Demo Mentores</button>
+                    <button class="nav-btn" onclick="scrollToSection('impact')">Impacto</button>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-success me-2" id="userBadge"></span>
+                    <button class="btn btn-sm btn-outline-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt me-1"></i>Salir
+                    </button>
+                </div>
             </div>
         </nav>
 
-        <section id="home" class="hero-section">
+        <!-- ===== SECCIÓN: INICIO ===== -->
+        <section id="home" class="section hero-section">
             <h1 class="hero-title">Plataforma de Mentoría Académica</h1>
-            <p class="hero-subtitle">"Conexión Educativa" facilita la mentoría entre estudiantes de cikl</p>
-            <button class="btn-demo" onclick="showDemo()">
+            <p class="hero-subtitle">
+                "Conexión Educativa" facilita la mentoría entre estudiantes de ciclos iniciales y avanzados, 
+                optimizando el desarrollo académico y profesional mediante un ecosistema colaborativo.
+            </p>
+            <button class="btn-demo" onclick="scrollToSection('mentors')">
                 <i class="fas fa-play me-2"></i>Ver Demo
             </button>
         </section>
 
-        <section id="mentors" style="padding: 2rem;">
+        <!-- ===== SECCIÓN: FUNCIONALIDADES ===== -->
+        <section id="features" class="section">
+            <h2 class="section-title">Funcionalidades Clave</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Autenticación Unificada</h4>
+                    <p>Login con OAuth 2.0 y Gmail para seguridad y facilidad</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-cog"></i></div>
+                    <h4>Perfiles Dinámicos</h4>
+                    <p>Mentores y aprendices con especialidades personalizadas</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-search"></i></div>
+                    <h4>Búsqueda Inteligente</h4>
+                    <p>Filtra mentores por área, horario y calificación</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h4>Agendamiento Automatizado</h4>
+                    <p>Integración con Google Calendar y recordatorios</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-star"></i></div>
+                    <h4>Sistema de Valoraciones</h4>
+                    <p>Evaluaciones con estrellas y comentarios públicos</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>MVP Escalable</h4>
+                    <p>Preparado para videollamadas y análisis de datos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN: TECNOLOGÍA ===== -->
+        <section id="tech" class="section">
+            <h2 class="section-title">Tecnologías Utilizadas</h2>
+            <div class="tech-container">
+                <h4 class="mb-3">Frontend</h4>
+                <div class="tech-badges">
+                    <span class="tech-badge"><i class="fab fa-html5 me-1"></i>HTML5</span>
+                    <span class="tech-badge"><i class="fab fa-css3-alt me-1"></i>CSS3</span>
+                    <span class="tech-badge"><i class="fab fa-js me-1"></i>JavaScript</span>
+                    <span class="tech-badge"><i class="fab fa-bootstrap me-1"></i>Bootstrap</span>
+                </div>
+                
+                <h4 class="mt-4 mb-3">Backend</h4>
+                <div class="tech-badges">
+                    <span class="tech-badge"><i class="fab fa-node-js me-1"></i>Node.js</span>
+                    <span class="tech-badge"><i class="fas fa-server me-1"></i>Express</span>
+                    <span class="tech-badge"><i class="fas fa-database me-1"></i>MongoDB</span>
+                </div>
+                
+                <h4 class="mt-4 mb-3">APIs</h4>
+                <div class="tech-badges">
+                    <span class="tech-badge"><i class="fab fa-google me-1"></i>Google OAuth</span>
+                    <span class="tech-badge"><i class="fab fa-google me-1"></i>Google Calendar</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN: FLUJO ===== -->
+        <section id="flow" class="section">
+            <h2 class="section-title">Flujo de Usuario</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>El aprendiz busca un mentor</h4>
+                        <p>Según sus necesidades académicas y área de conocimiento</p>
+                    </div>
+                    <div class="timeline-number">1</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Visualiza perfiles y selecciona</h4>
+                        <p>Explora tarjetas interactivas con información detallada</p>
+                    </div>
+                    <div class="timeline-number">2</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>El mentor recibe y confirma</h4>
+                        <p>Sincronización automática en ambos calendarios</p>
+                    </div>
+                    <div class="timeline-number">3</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Calificación y retroalimentación</h4>
+                        <p>El aprendiz evalúa la experiencia para transparencia</p>
+                    </div>
+                    <div class="timeline-number">4</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN: DEMO MENTORES ===== -->
+        <section id="mentors" class="section">
+            <h2 class="section-title">Demo: Busca Mentores</h2>
             <div class="container">
-                <h2 class="section-title">Busca tu Mentor</h2>
                 <div class="row mb-4">
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-2">
                         <input type="text" id="searchInput" class="form-control" placeholder="Buscar especialidad..." onkeyup="filterMentors()">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-2">
                         <select id="filterArea" class="form-select" onchange="filterMentors()">
                             <option value="">Todas las áreas</option>
                             <option value="matematicas">Matemáticas</option>
@@ -265,13 +561,35 @@
                             <option value="idiomas">Idiomas</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-2">
                         <button class="btn-primary-custom w-100" onclick="filterMentors()">
                             <i class="fas fa-filter me-2"></i>Filtrar
                         </button>
                     </div>
                 </div>
-                <div id="mentorsGrid" class="row"></div>
+                <div id="mentorsGrid" class="row g-4"></div>
+            </div>
+        </section>
+
+        <!-- ===== SECCIÓN: IMPACTO ===== -->
+        <section id="impact" class="section">
+            <h2 class="section-title">Impacto Esperado</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">40%</div>
+                    <h4>Reducción en Dificultades</h4>
+                    <p>Disminución reportada en dificultades académicas</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <h4>Redes Profesionales</h4>
+                    <p>Fortalecimiento de conexiones entre estudiantes</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <h4>Acceso Disponible</h4>
+                    <p>Plataforma accesible desde cualquier dispositivo</p>
+                </div>
             </div>
         </section>
     </div>
@@ -279,44 +597,30 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- TODAS LAS FUNCIONES JAVASCRIPT -->
+    <!-- JAVASCRIPT COMPLETO -->
     <script>
-        // Datos de mentores
+        // DATOS
         const mentorsData = [
             { id: 1, name: "María García", specialty: "matematicas", specialties: ["Cálculo", "Álgebra"], rating: 4.8, experience: "3 años" },
             { id: 2, name: "Carlos Ruiz", specialty: "programacion", specialties: ["JavaScript", "Node.js"], rating: 4.9, experience: "4 años" },
             { id: 3, name: "Ana López", specialty: "ciencias", specialties: ["Física", "Química"], rating: 4.7, experience: "2 años" },
-            { id: 4, name: "David Martínez", specialty: "idiomas", specialties: ["Inglés", "Francés"], rating: 4.6, experience: "5 años" }
+            { id: 4, name: "David Martínez", specialty: "idiomas", specialties: ["Inglés", "Francés"], rating: 4.6, experience: "5 años" },
+            { id: 5, name: "Laura Torres", specialty: "programacion", specialties: ["Python", "Data Science"], rating: 4.9, experience: "3 años" },
+            { id: 6, name: "Jorge Silva", specialty: "matematicas", specialties: ["Estadística", "Probabilidad"], rating: 4.5, experience: "2 años" }
         ];
 
-        // Estado global
         let currentUser = localStorage.getItem('loggedUser') || null;
-
-        // INICIALIZACIÓN
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("🚀 APP INICIADA");
-            if (currentUser) {
-                console.log("✅ Usuario encontrado:", currentUser);
-                showMainContent();
-            } else {
-                console.log("❌ Sin usuario, mostrando login");
-                showLogin();
-            }
-        });
 
         // ===== FUNCIONES LOGIN =====
         function showLogin() {
-            console.log("🔐 Mostrando pantalla de login");
             document.getElementById('loginOverlay').classList.remove('d-none');
             document.getElementById('mainContent').classList.add('d-none');
         }
 
         function showMainContent() {
-            console.log("📱 Mostrando contenido principal");
             document.getElementById('loginOverlay').classList.add('d-none');
             document.getElementById('mainContent').classList.remove('d-none');
             
-            // Mostrar tipo de usuario
             const userType = currentUser.split('_')[0];
             const userName = currentUser.split('_')[1] || 'Usuario';
             document.getElementById('userBadge').textContent = userType === 'google' ? 'Google User' : userName;
@@ -325,18 +629,23 @@
         }
 
         function handleGoogleLogin() {
-            console.log("🔵 Iniciando login con Google...");
             const btn = event.target;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Conectando con Google...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Conectando...';
             btn.disabled = true;
-
+            
             setTimeout(() => {
                 currentUser = 'google_user_' + Date.now();
                 localStorage.setItem('loggedUser', currentUser);
-                console.log("✅ Login Google exitoso:", currentUser);
                 showMainContent();
                 showNotification('✅ Autenticado con Google', 'success');
-            }, 2000);
+            }, 1500);
+        }
+
+        function handleGuestLogin() {
+            currentUser = 'guest_test_user';
+            localStorage.setItem('loggedUser', currentUser);
+            showMainContent();
+            showNotification('🎮 Modo invitado activado', 'info');
         }
 
         function handleEmailLogin(event) {
@@ -344,40 +653,37 @@
             const email = event.target.querySelector('input[type="email"]').value;
             currentUser = 'email_' + email.split('@')[0];
             localStorage.setItem('loggedUser', currentUser);
-            console.log("✅ Login email exitoso:", currentUser);
             showMainContent();
-            showNotification('✅ Inicio de sesión exitoso', 'success');
-        }
-
-        // 👉 ACCESO DIRECTO PARA TESTING
-        function handleGuestLogin() {
-            console.log("🎮 Login como invitado");
-            currentUser = 'guest_test_user';
-            localStorage.setItem('loggedUser', currentUser);
-            showMainContent();
-            showNotification('🎮 Modo invitado activado', 'info');
+            showNotification('✅ Login exitoso', 'success');
         }
 
         function logout() {
-            console.log("🚪 Cerrando sesión");
             localStorage.removeItem('loggedUser');
             currentUser = null;
             showLogin();
-            showNotification('Has cerrado sesión', 'info');
+            showNotification('Sesión cerrada', 'info');
         }
 
-        // ===== FUNCIONES BOTONES PRINCIPALES =====
+        // ===== FUNCIONES NAVEGACIÓN =====
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                
+                // Actualizar botones activos
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+            }
+        }
+
+        // ===== FUNCIONES DEMO MENTORES =====
         function showDemo() {
-            console.log("🎯 Mostrando demo");
-            document.getElementById('mentors').scrollIntoView({ behavior: 'smooth' });
-            showNotification('🎯 Demo activada: Usa los filtros', 'info');
+            scrollToSection('mentors');
         }
 
         function filterMentors() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const areaFilter = document.getElementById('filterArea').value;
-            
-            console.log("🔍 Filtrando:", { searchTerm, areaFilter });
             
             const filtered = mentorsData.filter(mentor => {
                 const matchesSearch = mentor.name.toLowerCase().includes(searchTerm) || 
@@ -386,7 +692,6 @@
                 return matchesSearch && matchesArea;
             });
             
-            console.log("✅ Resultados:", filtered.length);
             loadMentors(filtered);
             showNotification(`🔍 ${filtered.length} mentores encontrados`, 'info');
         }
@@ -397,8 +702,6 @@
                 showLogin();
                 return;
             }
-            
-            console.log("📅 Agendando con:", mentorName);
             
             const modalId = 'scheduleModal';
             const modalHtml = `
@@ -413,6 +716,14 @@
                                 <div class="mb-3">
                                     <label>Fecha y Hora</label>
                                     <input type="datetime-local" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Tema</label>
+                                    <select class="form-select">
+                                        <option>Dudas de clase</option>
+                                        <option>Preparación examen</option>
+                                        <option>Proyectos prácticos</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -431,24 +742,22 @@
         }
 
         function confirmSession(mentorName) {
-            console.log("✅ Confirmando sesión con:", mentorName);
             bootstrap.Modal.getInstance(document.getElementById('scheduleModal')).hide();
             showNotification(`✅ Sesión confirmada con ${mentorName}`, 'success');
         }
 
-        // ===== HELPERS =====
         function loadMentors(mentors = mentorsData) {
             const grid = document.getElementById('mentorsGrid');
             if (!grid) return;
             
-            grid.innerHTML = mentors.map((mentor, index) => `
-                <div class="col-md-6 col-lg-3" style="animation-delay: ${index * 0.1}s">
+            grid.innerHTML = mentors.map(mentor => `
+                <div class="col-md-6 col-lg-4 mb-4">
                     <div class="mentor-card">
                         <h5>${mentor.name}</h5>
                         <p>⭐ ${mentor.rating} | ${mentor.experience}</p>
                         <p><small>${mentor.specialties.join(', ')}</small></p>
-                        <button class="btn-primary-custom w-100" onclick="scheduleSession('${mentor.name}')">
-                            Agendar
+                        <button class="btn-primary-custom btn-schedule" onclick="scheduleSession('${mentor.name}')">
+                            Agendar Sesión
                         </button>
                     </div>
                 </div>
