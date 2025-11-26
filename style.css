@@ -24,12 +24,84 @@ body {
     background-color: var(--bg-light);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    color: var(--text-dark);
+/* LOGIN STYLES */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Header */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.login-box {
+    background: white;
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btn-google {
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-google:hover {
+    background: #357ae8;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+    color: var(--text-light);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--bg-light);
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* MAIN STYLES */
 .hero-section {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
@@ -87,7 +159,6 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 2px;
 }
 
-/* Cards */
 .feature-card {
     background: white;
     border-radius: 12px;
@@ -128,7 +199,6 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-/* Tech Stack */
 .tech-badge {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
@@ -144,113 +214,6 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.05);
 }
 
-/* Timeline */
-.timeline {
-    position: relative;
-    padding: 2rem 0;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
-}
-
-.timeline-item {
-    position: relative;
-    margin: 2rem 0;
-}
-
-.timeline-content {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    width: 45%;
-    position: relative;
-}
-
-.timeline-item:nth-child(odd) .timeline-content {
-    margin-left: auto;
-}
-
-.timeline-number {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    z-index: 2;
-}
-
-/* Stats */
-.stat-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition);
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Navbar */
-.navbar {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem 0;
-}
-
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.nav-link {
-    font-weight: 500;
-    color: var(--text-dark);
-    transition: color 0.3s;
-}
-
-.nav-link:hover, .nav-link.active {
-    color: var(--primary-color);
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, var(--text-dark), #0f172a);
-    color: white;
-    padding: 3rem 0;
-    margin-top: 5rem;
-}
-
-/* Buttons */
 .btn-primary-custom {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border: none;
@@ -267,59 +230,19 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-/* Mentor Cards Demo */
-.mentor-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition);
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
 }
 
-.mentor-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--hover-shadow);
-}
-
-.mentor-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.mentor-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: white;
-    margin: 0 auto 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-}
-
-.mentor-body {
-    padding: 1.5rem;
-}
-
-.rating {
-    color: #fbbf24;
-    margin: 0.5rem 0;
-}
-
-.specialty-badge {
-    background: var(--bg-light);
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    margin: 0.25rem 0.25rem 0.25rem 0;
-    display: inline-block;
 }
 
-/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -335,23 +258,8 @@ h1, h2, h3, h4, h5, h6 {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
     }
-    
-    .timeline::before {
-        left: 30px;
-    }
-    
-    .timeline-content {
-        width: calc(100% - 60px);
-        margin-left: 60px;
-    }
-    
-    .timeline-number {
-        left: 30px;
-    }
-    
 }
